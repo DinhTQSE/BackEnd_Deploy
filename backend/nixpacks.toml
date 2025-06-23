@@ -1,0 +1,9 @@
+# Configures the Nixpacks build environment for Railway
+
+[providers]
+# Specify the Java version to use
+java = "21"
+
+[phases.setup]
+# Install the specified Java version
+nixPkgs = ["...", "jdk21"]
