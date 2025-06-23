@@ -17,13 +17,11 @@
     </parent>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <!-- Remove conflicting properties and keep a single source of truth -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok.version>1.18.38</lombok.version>
-        <maven.compiler.proc>full</maven.compiler.proc>
     </properties>
 
     <dependencies>
@@ -111,8 +109,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <!-- This is now the only thing controlling the Java version -->
+                    <release>${java.version}</release>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -121,8 +119,6 @@
                         </path>
                         <!-- other annotation processors -->
                     </annotationProcessorPaths>
-                    <fork>true</fork>
-                    <release>${java.version}</release> <!-- Ensure release matches java.version -->
                 </configuration>
             </plugin>
         </plugins>
