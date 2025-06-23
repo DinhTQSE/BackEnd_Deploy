@@ -17,9 +17,9 @@
     </parent>
 
     <properties>
-        <!-- Remove conflicting properties and keep a single source of truth -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Single source of truth for Java version -->
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok.version>1.18.38</lombok.version>
     </properties>
@@ -84,24 +84,12 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.swp391_8.schoolhealth.SchoolHealthApplication</mainClass>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -109,7 +97,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <!-- This is now the only thing controlling the Java version -->
                     <release>${java.version}</release>
                     <annotationProcessorPaths>
                         <path>
@@ -117,7 +104,6 @@
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
                         </path>
-                        <!-- other annotation processors -->
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
