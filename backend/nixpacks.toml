@@ -1,9 +1,11 @@
 # Configures the Nixpacks build environment for Railway
 
-[providers]
-# Specify the Java version to use
-java = "21"
+# The [providers] table from the previous version was incorrectly formatted,
+# causing the parsing error.
+# The correct way to specify a JDK version is to add it to the Nix packages
+# during the setup phase.
 
 [phases.setup]
-# Install the specified Java version
+# Add JDK 21 to the environment. The "..." is important as it includes
+# the default packages that Nixpacks would normally install.
 nixPkgs = ["...", "jdk21"]
